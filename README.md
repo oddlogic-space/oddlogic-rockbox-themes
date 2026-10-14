@@ -9,6 +9,7 @@ Themes for the [Rockbox](https://www.rockbox.org) firmware, made for the HiBy R1
 | [Pretty Sad](themes/pretty-sad) | 1.0 | A taped polaroid-style album card on a dark blue-green background with coral accents |
 | [Waveform Bot HUD](themes/waveform-bot-hud) | 1.0 | A navy and gold sci-fi HUD with VU meters either side of the album art |
 | [Teal Vocaldroid](themes/teal-vocaldroid) | 1.0 | A teal and pink digital-audio player with level meters beside the album art |
+| [Studio Console](themes/studio-console) | 1.0 | A vintage recording-studio console with green glowing tiles, peak meters and a touch volume fader |
 
 ## Found a bug or want the latest version?
 
