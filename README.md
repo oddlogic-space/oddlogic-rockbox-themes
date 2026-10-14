@@ -2,14 +2,18 @@
 
 Themes for the [Rockbox](https://www.rockbox.org) firmware, made for the HiBy R1 (480x800, touchscreen).
 
-| Theme | Version | Screens |
-|-------|---------|---------|
+| Theme | Version | Look |
+|-------|---------|------|
 | [Drift Mountain](themes/drift-mountain) | 1.0 | Car head-unit playback screen, tile main menu, list menus |
+| [In Love](themes/in-love) | 1.0 | Soft pink-on-plum player with dashed outlines, rounded buttons and a framed album-art card |
+| [Pretty Sad](themes/pretty-sad) | 1.0 | A taped polaroid-style album card on a dark blue-green background with coral accents |
+| [Waveform Bot HUD](themes/waveform-bot-hud) | 1.0 | A navy and gold sci-fi HUD with VU meters either side of the album art |
+| [Teal Vocaldroid](themes/teal-vocaldroid) | 1.0 | A teal and pink digital-audio player with level meters beside the album art |
 
 ## Found a bug or want the latest version?
 
 - **Report a bug:** [open an issue](../../issues/new/choose). Please include your device, Rockbox version and a photo or screenshot.
-- **Download:** see the [Releases](../../releases) page for the newest version and what changed.
+- **Download:** each theme folder has a `download/` zip, and the [Releases](../../releases) page lists new versions and what changed.
 - Each theme has its own `CHANGELOG.md` in its folder.
 
 ## Licence
