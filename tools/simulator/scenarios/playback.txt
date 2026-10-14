@@ -12,15 +12,15 @@ up 240 110
 sleep 5000
 key f5
 sleep 1300
-down 407 150
+down 417 250
 sleep 100
-move 407 140
+move 417 240
 sleep 100
-move 407 100
+move 417 200
 sleep 100
-move 407 80
+move 417 160
 sleep 100
-up 407 80
+up 417 160
 sleep 1000
 key f5
 sleep 1300

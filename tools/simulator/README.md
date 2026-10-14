@@ -51,7 +51,7 @@ Screendumps land in `simdisk/dump YYMMDD-HHMMSS.bmp` (note the space).
 `esc` = POWER (short press = back/cancel; in the WPS = menu), `enter` = PLAY, `left` = PREV, `right` = NEXT, `pgup`/`pgdn` = VOL_UP/VOL_DOWN (patch 0002).
 
 ### Coordinates used by the studio theme (tile menu / WPS)
-Files tile (127,135); Settings tile (353,260); list rows (240,110), (240,186); volume fader x=407, y 49-221; position fader y=496; play (240,612); next (415,612); shuffle (65,735); repeat (215,735). Adjust for other themes.
+Files tile (127,135); Settings tile (353,260); list rows (240,110), (240,186); volume fader x=417, y 93-389 (v1.1 layout); position fader y=496; play (240,612); next (415,612); shuffle (65,735); repeat (215,735). Adjust for other themes.
 
 ## Skin-engine gotchas found with the sim
 - Each `%Vl` layer clears to the backdrop/bg colour, so text over art needs a flat plate baked into the backdrop that matches the viewport rect exactly.
