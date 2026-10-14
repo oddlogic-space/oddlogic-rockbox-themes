@@ -3,7 +3,7 @@
 ## 1.1 - 2026-10-14
 - Larger, sharper menu, list and playback text (smooth outline font instead of an enlarged pixel font).
 - New playback layout: album art starts at the top; the clock and battery are separate modules above the peak meters and level fader.
-- Elapsed and remain counters are the same size; descenders (g, y, p) are no longer clipped.
+- Elapsed and remain counters are the same size; descenders (g, y, p) and the digital counters are no longer clipped.
 - Peak meters and volume fader are much taller (volume fader about 1.8x longer, so small movements change the volume less).
 - Checked in the Rockbox simulator, including Japanese (CJK) text.
 
