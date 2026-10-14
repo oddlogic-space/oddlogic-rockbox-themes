@@ -6,9 +6,11 @@ A theme for the HiBy R1 (480x800, touchscreen): soft pink-on-plum player with da
 
 Soft pink on deep plum, dashed rounded outlines, a framed album-art card and pill-shaped format badges. Screenshots use placeholder text and a generic cover.
 
+**CJK support:** yes. Japanese, Chinese and Korean text displays correctly.
+
 ## Install
 
-1. Download [`inlove-v1.0.zip`](download/inlove-v1.0.zip) (or the latest from [Releases](../../../../releases)).
+1. Download [`inlove-v1.1.zip`](download/inlove-v1.1.zip) (or the latest from [Releases](../../../../releases)).
 2. Copy the `.rockbox` folder into `/.rockbox/` on the SD card (merge folders).
 3. On the player: Settings > General Settings > Display > Touchscreen Settings > Touchscreen mode > **Point**.
 4. Settings > General Settings > Theme Settings > Browse Theme Files > pick `inlove.cfg`.

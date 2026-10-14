@@ -4,7 +4,9 @@ A theme for the HiBy R1 (480x800, touchscreen): a vintage recording-studio conso
 
 ![Menu](screenshots/menu.png) ![List](screenshots/list.png) ![Playback](screenshots/playback.png)
 
-Includes Japanese/CJK glyph support. Screenshots use placeholder text and a generic cover.
+Screenshots use placeholder text and a generic cover.
+
+**CJK support:** yes. Japanese, Chinese and Korean text displays correctly.
 
 ## Install
 

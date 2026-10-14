@@ -9,6 +9,8 @@ A night-drive car head-unit theme for the HiBy R1 (480x800, touchscreen).
 - **Other menus:** dark-panel lists with the same cream selection bar.
 - **Bottom bar:** now-playing strip; tap it to open the playback screen.
 
+**CJK support:** yes. Japanese, Chinese and Korean text displays correctly.
+
 ## Install
 
 1. Download the latest zip from [Releases](../../../../releases).

@@ -15,13 +15,20 @@ The built simulator and the Rockbox source (GPL, large) are **not** stored here.
 ```
 `run-scenario.sh` runs the sim headless with `RB_SIMCMD` and converts each F5 screendump to `<prefix>_N.png` (480x800).
 
+## One-shot theme check
+```sh
+./test-theme.sh path/to/theme.zip <theme-id> list|tile [row1_y row2_y] [outdir]
+```
+Unzips, installs, plays the Latin track, pauses (PLAY), presses NEXT to the Japanese track, and writes a contact sheet `<id>_sheet.png` (menu, Files, playing, paused, CJK) plus the individual shots. Use `list` for list-style main menus (row Y defaults 176/248; Teal/Waveform use 140/196) or `tile` for tile menus. Run one theme at a time: two simulators sharing the same disk overwrite each other's settings.
+
 ## What the scripts do
 | File | Purpose |
 |---|---|
 | `build-simulator.sh` | Clones Rockbox at a pinned commit, applies `patches/`, configures `--target=hibyr1 --type=s`, strips `-lasound`, builds, `make fullinstall`, makes test music |
 | `make-test-music.sh` | ffmpeg-generated `01-test.mp3` (Latin tags) and `02-cjk.flac` (Japanese tags) |
 | `install-theme.sh` | Copies the theme into the sim disk, writes `config.cfg` from the theme cfg plus `touchscreen mode: point`, `start directory: /Music`, `resume: off` |
-| `run-scenario.sh` | Runs a scenario file and produces PNGs |
+| `run-scenario.sh` | Runs a scenario file (use an absolute path) and produces PNGs; clears stale settings/resume files first |
+| `test-theme.sh` | One-shot regression check of a theme zip (see above) |
 
 ## Patches
 - `0001`: a command-driver thread in `button-sdl.c` (scripted input), touch debug output, extra keys (tab, pgup, pgdn).
@@ -34,14 +41,14 @@ sleep MS
 down X Y
 move X Y
 up X Y
-key NAME        # e.g. key tab, key f5 (screendump), key esc
+key NAME        # tab, f5 (screendump), esc, enter, left, right, up, down, pgup, pgdn
 quit
 ```
 Always begin with `key tab`: it disables the sim "background" that otherwise offsets touch coordinates by (77,74).
 Screendumps land in `simdisk/dump YYMMDD-HHMMSS.bmp` (note the space).
 
 ### Keyboard map (hardware buttons)
-`esc` = POWER (short press = back/cancel; in the WPS = menu), `left` = PREV, `right` = NEXT, plus PLAY and VOL_UP/VOL_DOWN as defined in patch 0002.
+`esc` = POWER (short press = back/cancel; in the WPS = menu), `enter` = PLAY, `left` = PREV, `right` = NEXT, `pgup`/`pgdn` = VOL_UP/VOL_DOWN (patch 0002).
 
 ### Coordinates used by the studio theme (tile menu / WPS)
 Files tile (127,135); Settings tile (353,260); list rows (240,110), (240,186); volume fader x=407, y 49-221; position fader y=496; play (240,612); next (415,612); shuffle (65,735); repeat (215,735). Adjust for other themes.
