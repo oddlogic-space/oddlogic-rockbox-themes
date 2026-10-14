@@ -1,0 +1,37 @@
+# playback: tap the position fader (seek), shuffle on, repeat all -> one, then next track
+sleep 2500
+key tab
+sleep 500
+down 127 135
+sleep 200
+up 127 135
+sleep 1500
+down 240 110
+sleep 200
+up 240 110
+sleep 4000
+down 300 496
+sleep 200
+up 300 496
+sleep 1500
+down 65 735
+sleep 200
+up 65 735
+sleep 1000
+down 215 735
+sleep 200
+up 215 735
+sleep 1000
+down 215 735
+sleep 200
+up 215 735
+sleep 1000
+key f5
+sleep 1300
+down 415 612
+sleep 200
+up 415 612
+sleep 2500
+key f5
+sleep 1300
+quit

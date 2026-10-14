@@ -1,0 +1,19 @@
+# play the Japanese-tagged track, screenshot it, then press POWER (back) to the main menu to check the footer while playing
+sleep 2500
+key tab
+sleep 500
+down 127 135
+sleep 200
+up 127 135
+sleep 1500
+down 240 186
+sleep 200
+up 240 186
+sleep 5000
+key f5
+sleep 1300
+key esc
+sleep 1500
+key f5
+sleep 1300
+quit

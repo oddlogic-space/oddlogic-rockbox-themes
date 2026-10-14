@@ -1,0 +1,33 @@
+# Files -> first track -> playback screen; drag the volume fader; pause; screenshot after each step
+sleep 2500
+key tab
+sleep 500
+down 127 135
+sleep 200
+up 127 135
+sleep 1500
+down 240 110
+sleep 200
+up 240 110
+sleep 5000
+key f5
+sleep 1300
+down 407 150
+sleep 100
+move 407 140
+sleep 100
+move 407 100
+sleep 100
+move 407 80
+sleep 100
+up 407 80
+sleep 1000
+key f5
+sleep 1300
+down 240 612
+sleep 200
+up 240 612
+sleep 1500
+key f5
+sleep 1300
+quit

@@ -1,0 +1,17 @@
+# main menu, then into Settings (a submenu) and back out: checks the tile<->list layout bug stays fixed
+sleep 2500
+key tab
+sleep 500
+key f5
+sleep 1300
+down 353 260
+sleep 200
+up 353 260
+sleep 1500
+key f5
+sleep 1300
+key esc
+sleep 1500
+key f5
+sleep 1300
+quit
