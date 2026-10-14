@@ -1,0 +1,33 @@
+name: Bug report
+description: Something looks wrong or doesn't work in a theme
+labels: [bug]
+body:
+  - type: dropdown
+    id: theme
+    attributes:
+      label: Theme
+      options: [Drift Mountain]
+    validations: {required: true}
+  - type: input
+    id: version
+    attributes:
+      label: Theme version
+      description: Shown on the Releases page, e.g. 1.0
+    validations: {required: true}
+  - type: input
+    id: device
+    attributes:
+      label: Device and Rockbox version
+      placeholder: HiBy R1, Rockbox 3.15
+    validations: {required: true}
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened?
+      description: Which screen, what you tapped, what you expected. Attach a photo or video if you can.
+    validations: {required: true}
+  - type: dropdown
+    id: touch
+    attributes:
+      label: Touchscreen mode set to Point?
+      options: ["Yes", "No", "Not sure"]
