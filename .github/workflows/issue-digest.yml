@@ -1,0 +1,86 @@
+# Rewrites tracking/issues.md with every open issue so the Claude Project,
+# which syncs repository files but not issues, can read them.
+name: Issue digest
+
+on:
+  issues:
+    types: [opened, edited, closed, reopened, labeled, unlabeled]
+  issue_comment:
+    types: [created, edited, deleted]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  issues: read
+
+concurrency:
+  group: issue-digest
+  cancel-in-progress: false
+
+jobs:
+  digest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Write tracking/issues.md
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const { owner, repo } = context.repo;
+            const issues = (await github.paginate(github.rest.issues.listForRepo, {
+              owner, repo, state: 'open', per_page: 100,
+            })).filter(i => !i.pull_request);
+
+            // Read a field from the bug report issue form ("### Label" then the answer).
+            const field = (body, label) => {
+              const m = (body || '').match(new RegExp(`### ${label}\\s*\\n+([^\\n#][^\\n]*)`));
+              const v = m ? m[1].trim() : '';
+              return v && v !== '_No response_' ? v : '';
+            };
+            const oneLine = (s, n = 300) => {
+              const t = (s || '').replace(/\s+/g, ' ').trim();
+              return t.length > n ? t.slice(0, n) + '...' : t;
+            };
+
+            const out = [
+              '# Open issues',
+              '',
+              'Written by the Issue digest workflow; do not edit by hand.',
+              `Open issues: ${issues.length}`,
+              '',
+            ];
+            for (const i of issues) {
+              const comments = i.comments
+                ? await github.rest.issues.listComments({ owner, repo, issue_number: i.number, per_page: 100 })
+                : { data: [] };
+              const last = comments.data[comments.data.length - 1];
+              out.push(`## #${i.number} ${i.title}`, '');
+              out.push(`- Link: ${i.html_url}`);
+              out.push(`- Opened: ${i.created_at.slice(0, 10)} by @${i.user.login}; updated ${i.updated_at.slice(0, 10)}`);
+              out.push(`- Labels: ${i.labels.map(l => l.name).join(', ') || 'none'}`);
+              for (const [label, name] of [
+                ['Theme', 'Theme'], ['Theme version', 'Version'],
+                ['Device and Rockbox version', 'Device'], ['Touchscreen mode set to Point\\?', 'Touch mode Point'],
+              ]) {
+                const v = field(i.body, label);
+                if (v) out.push(`- ${name}: ${v}`);
+              }
+              out.push(`- Report: ${oneLine(field(i.body, 'What happened\\?') || i.body) || '(empty)'}`);
+              out.push(last
+                ? `- Latest comment (${last.created_at.slice(0, 10)}, @${last.user.login}): ${oneLine(last.body)}`
+                : '- Latest comment: none');
+              out.push('');
+            }
+            fs.mkdirSync('tracking', { recursive: true });
+            fs.writeFileSync('tracking/issues.md', out.join('\n'));
+
+      - name: Commit if changed
+        run: |
+          git add tracking/issues.md
+          if git diff --cached --quiet; then exit 0; fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898333+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Update issue digest"
+          git push
