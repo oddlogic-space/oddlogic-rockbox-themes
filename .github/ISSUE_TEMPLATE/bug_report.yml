@@ -6,7 +6,7 @@ body:
     id: theme
     attributes:
       label: Theme
-      options: [Drift Mountain, In Love, Pretty Sad, Waveform Bot HUD, Teal Vocaldroid]
+      options: [Drift Mountain, In Love, Pretty Sad, Studio Console, Teal Vocaldroid, Waveform Bot HUD]
     validations: {required: true}
   - type: input
     id: version
