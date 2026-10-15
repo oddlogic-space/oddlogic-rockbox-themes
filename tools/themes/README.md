@@ -32,3 +32,13 @@ It rebuilds each theme into a scratch folder, unzips the zip from `themes/<slug>
 
 ## Requirements
 Python 3 with Pillow, numpy and fontTools; Noto Sans CJK and Noto Serif CJK in `/usr/share/fonts/opentype/noto/`.
+
+The fonts must be these exact releases, or the rendered `.fnt` files differ from the shipped zips. Noto Serif CJK 2.003 changes 47 glyphs in the 40 px title fonts of In Love and Pretty Sad.
+
+| File in `/usr/share/fonts/opentype/noto/` | Version | Download |
+|---|---|---|
+| `NotoSansCJK-Medium.ttc` | 2.004 | https://raw.githubusercontent.com/notofonts/noto-cjk/Sans2.004/Sans/OTC/NotoSansCJK-Medium.ttc |
+| `NotoSansCJK-Bold.ttc` (Studio Console) | 2.004 | https://raw.githubusercontent.com/notofonts/noto-cjk/Sans2.004/Sans/OTC/NotoSansCJK-Bold.ttc |
+| `NotoSerifCJK-SemiBold.ttc` (In Love, Pretty Sad) | 2.002 | https://raw.githubusercontent.com/notofonts/noto-cjk/Serif2.002/Serif/OTC/NotoSerifCJK-SemiBold.ttc |
+
+Check a version with `fc-query -f '%{fontversion}\n' <file>`: 2.004 prints 131334 and 2.002 prints 131203.
