@@ -1,0 +1,132 @@
+# Teal Vocaldroid - While Playing Screen, 480x800 portrait.
+#
+#    0..52   status bar (headset volume, clock, battery %, ladder battery) - drawn here, base skin disabled with %wd
+#   58..458  album art 400x400 (x 40..440), flanked by two LIVE level meters (x 8..28 and 452..472)
+#  462..520  title on a glass plate (piano roll behind, stencil-01 washi tape) + "..." context button
+#  518..590  artist / album
+#  590..627  format | bitrate | playlist position chips
+#  636..656  seek bar (the whole band is the touch area) - pink knob
+#  656..693  elapsed (pink) / total
+#  704..800  shuffle | prev | play-pause | next | repeat   (pink ring = active)
+#
+# Touch buttons need Settings > ... > Touchscreen mode > Point.
+# The meters read the real audio level (%pL/%pR); lit segments are teal, then mint, then the hot-pink peak.
+%wd
+
+# Full-screen backdrop: status bar, dim meter ladders, title plate, chips, seek trough and panel are baked in.
+%X(bg_wps.bmp)
+
+%Fl(2,28-tealvocaldroid.fnt)
+%Fl(3,40-tealvocaldroid.fnt)
+
+# images (x,y = offset inside the viewport that displays them)
+%xl(spk,speaker.bmp,0,0)
+%xl(f,battery_fill.bmp,0,0)
+%xl(ml,meter_l.bmp,0,0)
+%xl(mr,meter_r.bmp,0,0)
+%xl(pk,pb_knob.bmp,0,0)
+%xl(prv,prev.bmp,16,16)
+%xl(ply,play.bmp,8,8)
+%xl(pau,pause.bmp,8,8)
+%xl(nxt,next.bmp,16,16)
+# sprite sheets: repeat = off|all|one|repeat-shuffle|A-B ; shuffle = off|on
+%xl(r,repeat.bmp,16,20,5)
+%xl(s,shuffle.bmp,16,20,2)
+%xl(men,menu.bmp,0,0)
+
+# ---- clear the whole screen to the backdrop ----
+%V(0,0,480,800,-)
+
+# ---- status bar block (matches bg_wps.bmp) ----
+%V(0,0,480,52,-)
+%dr(0,50,480,2,2A8B84)
+
+%V(16,15,24,20,-)
+%xd(spk)
+
+%V(46,19,120,12,-)%Vf(39C5BB)
+%pv(0,0,-,-,noborder)
+
+%V(176,7,128,36,2)%Vf(D8EEEC)
+%ac%cH:%cM
+
+%V(312,7,124,36,2)%Vf(D8EEEC)
+%ar%bl%%
+
+# ladder battery: the frame is baked into the backdrop; only the 5-segment fill is live (teal; mint while charging; pink when low)
+%V(451,13,16,28,-)%Vb(16282B)%Vf(39C5BB)
+%?bc<%Vf(8FE3B0)|%?bl<|%Vf(E2509A)|||>>
+%bl(0,0,16,28,f)
+
+# ---- live level meters, left and right of the cover ----
+%V(8,58,20,400,-)%Vf(39C5BB)
+%pL(0,0,20,400,ml)
+
+%V(452,58,20,400,-)%Vf(39C5BB)
+%pR(0,0,20,400,mr)
+
+# ---- album art, 400x400 (the no-cover badge is baked into bg_wps.bmp and shows when there is none) ----
+%V(40,58,400,400,1)
+%Cl(0,0,400,400,c,c)
+%?C<%Cd>
+
+# ---- title on the plate + context menu ----
+%V(36,468,302,52,3)%Vf(D8EEEC)
+%s%al%?it<%it|%fn>
+
+%V(420,462,60,62,-)
+%T(menu,0,0,-,-,contextmenu)
+%xd(men)
+
+%V(22,518,436,37,2)%Vf(8FB3B0)
+%s%al%?ia<%ia|Unknown Artist>
+
+%V(22,552,436,37,2)%Vf(6F9490)
+%s%al%?id<%id|Unknown Album>
+
+# ---- info chips: format | bitrate | playlist position (outlines baked in) ----
+%V(24,590,112,37,2)%Vf(D8EEEC)
+%ac%fc
+
+%V(146,590,128,37,2)%Vf(D8EEEC)
+%ac%fbk
+
+%V(284,590,172,37,2)%Vf(D8EEEC)
+%ac%pp/%pe
+
+# ---- progress bar: a contentless touch band (declared first so nothing wipes it), then the bar ----
+%V(24,628,432,62,-)
+%T(seek,0,0,-,-,progressbar)
+
+%V(24,636,432,20,1)%Vf(39C5BB)
+%pb(0,3,-,14,slider,pk,notouch)
+
+%V(24,656,200,37,2)%Vf(E2509A)
+%al%pc
+
+%V(256,656,200,37,2)%Vf(8FB3B0)
+%ar%pt
+
+# ---- control row: shuffle | prev | play-pause | next | repeat ----
+%V(0,704,88,96,-)
+%T(shuf,0,0,-,-,shuffle)
+%?ps<%xd(sb)|%xd(sa)>
+
+%V(94,704,96,96,-)
+%T(prev,0,0,-,-,wps_prev)
+%T(prevhold,0,0,-,-,rwd,repeat_press)
+%xd(prv)
+
+%V(192,704,96,96,-)
+%T(play,0,0,-,-,play)
+%T(stop,0,0,-,-,stop,long_press)
+%?mp<%xd(ply)|%xd(pau)|%xd(ply)|%xd(ply)|%xd(ply)>
+
+%V(290,704,96,96,-)
+%T(next,0,0,-,-,wps_next)
+%T(nexthold,0,0,-,-,ffwd,repeat_press)
+%xd(nxt)
+
+%V(392,704,88,96,-)
+%T(mode,0,0,-,-,repmode)
+%?mm<%xd(ra)|%xd(rb)|%xd(rc)|%xd(rd)|%xd(re)>

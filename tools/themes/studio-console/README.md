@@ -19,7 +19,7 @@ python3 lint.py out/m studioconsole                   # structural lint
 python3 preview.py out/m studioconsole out/prev          # screen mock-ups from the real assets
 (cd out/m && zip -rqDX9 ../studioconsole.zip .rockbox)   # upload-ready zip
 ```
-Then run the parser check and the simulator (`../simulator/test-theme.sh`) before releasing.
+Then run the parser check and the simulator (`../../simulator/test-theme.sh`) before releasing.
 
 ## Layout
 | Path | Purpose |

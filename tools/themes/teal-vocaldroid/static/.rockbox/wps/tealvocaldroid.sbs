@@ -1,0 +1,69 @@
+# Teal Vocaldroid - base skin (menus, lists, USB screen) for HiBy R1, 480x800.
+#
+# Layout:   0..50  status bar (same height as HiBy OS)   50..52 teal rule
+#          52..110 heading band (list title)            112..800 list area
+#
+# BACKDROP - bg_menu.bmp is a full-screen image with the status bar, heading band, volume
+# trough and the faint hair wisps baked in. Every viewport clears TO the backdrop, so the
+# wisps show behind lists and text, and Rockbox's leftover boot splash can never show
+# through (loading a backdrop replaces the buffer that held it). The header colours are
+# also drawn on the screen layer below, identical to the image, as a safety net.
+%X(bg_menu.bmp)
+%Fl(2,28-tealvocaldroid.fnt)
+%Fl(3,40-tealvocaldroid.fnt)
+%xl(spk,speaker.bmp,0,0)
+%xl(f,battery_fill.bmp,0,0)
+
+# list area. On the USB screen the list viewport is a 2x2 dot, which hides Rockbox's
+# own USB logo (same trick as the Snappy theme) so we can draw our own message.
+%Vi(main,0,112,-,-,1)
+%Vi(ui_usb,0,152,2,2,1)
+%?if(%cs,=,21)<%VI(ui_usb)|%VI(main)>
+
+# heading: accent + title on lists, "USB connected" on the USB screen
+%?if(%cs,=,21)<%Vd(hd)%Vd(ut)%Vd(ub)|%?Lt<%Vd(hd)%Vd(ht)>>
+
+# ---- clear the whole screen to the backdrop ----
+%V(0,0,480,800,-)
+
+# ---- header block (matches bg_menu.bmp) ----
+%V(0,0,480,110,-)
+%dr(0,50,480,2,2A8B84)
+
+# ---- status bar contents ----
+%V(16,15,24,20,-)
+%xd(spk)
+
+%V(46,19,120,12,-)%Vf(39C5BB)
+%pv(0,0,-,-,noborder)
+
+%V(176,7,128,36,2)%Vf(D8EEEC)
+%ac%cH:%cM
+
+%V(312,7,124,36,2)%Vf(D8EEEC)
+%ar%bl%%
+
+# ladder battery: the frame is baked into the backdrop; only the 5-segment fill is live (teal; mint while charging; pink when low)
+%V(451,13,16,28,-)%Vb(16282B)%Vf(39C5BB)
+%?bc<%Vf(8FE3B0)|%?bl<|%Vf(E2509A)|||>>
+%bl(0,0,16,28,f)
+
+# ---- heading band marks: pink accent block + teal hairline (the plate, piano roll and tape are baked into bg_menu.bmp) ----
+%Vl(hd,0,52,480,58,1)
+%dr(0,0,8,58,E2509A)
+%dr(0,56,480,2,2A8B84)
+
+# list title, big and teal
+%Vl(ht,36,55,246,52,3)%Vf(39C5BB)
+%s%al%Lt
+
+# ---- USB screen ----
+%Vl(ut,36,62,250,37,2)%Vf(39C5BB)
+%alUSB connected
+
+%Vl(ub,20,230,440,190,2)%Vf(8FB3B0)
+%acYour player is connected
+%acto a computer.
+%ac
+%acEject it there before
+%acunplugging the cable.
