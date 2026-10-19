@@ -15,7 +15,9 @@
   - The Claude GitHub App, for Claude Code sessions.
   - The Claude Project's GitHub connection, which reads repo files.
   - None of the tokens listed in oddlogic-space/batch's CLAUDE.md reaches this repo.
-  - How A.C pushes from their Mac, any Actions secrets, deploy keys or other apps with access: still to be checked (issue #5).
+  - A.C uses GitHub only in the browser (laptop or phone): no personal access tokens, SSH keys or desktop sign-ins (A.C, 19 Oct).
+  - No Actions secrets, deploy keys or webhooks on this repo (A.C, 19 Oct).
+  - GitHub Apps installed on the account: Claude, and Cloudflare Workers and Pages. This repo doesn't use Cloudflare; check that app's repository access (issue #5).
 
 ## Privacy
 
