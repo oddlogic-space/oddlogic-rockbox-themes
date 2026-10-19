@@ -19,7 +19,8 @@ tools/verify-rebuild.sh in-love pretty-sad   # selected themes
 It rebuilds each theme into a scratch folder, unzips the zip from `themes/<slug>/download/` and compares the two `.rockbox` trees. PASS means identical.
 
 ## Layout
-- `common/make_fonts.py`: the shared Noto-to-RB12 bitmap font generator (`make_fonts.py <font.ttc> <outdir> <name> [sizes]`). Sans themes use Noto Sans CJK Medium at 28, 32 and 40 px; In Love and Pretty Sad add Noto Serif CJK SemiBold at 40 px for titles.
+- `common/rbfont.py`: the one shared font module for every theme: character sets (JIS X 0208, JIS level 1), the four rasterisers (Noto, supersampled Noto, Unifont pixel, DSEG7 digits), the RB12 writer and a reader for previews.
+- `common/make_fonts.py`: command-line front end for the Noto rasteriser (`make_fonts.py <font.ttc> <outdir> <name> [sizes]`). Sans themes use Noto Sans CJK Medium at 28, 32 and 40 px; In Love and Pretty Sad add Noto Serif CJK SemiBold at 40 px for titles.
 - `<theme>/package.py <outdir>`: builds the full `.rockbox/` tree for the theme (Studio Console uses `build.py`).
 - Generated: fonts, backdrops, sprites, and (where the skins are drawn by code) the `.wps`/`.sbs`/`.cfg` text.
 - Authored text kept as files: Teal Vocaldroid's skin files and cfg (`teal-vocaldroid/static/`), and the font licence files (`licence/`).
@@ -31,4 +32,14 @@ It rebuilds each theme into a scratch folder, unzips the zip from `themes/<slug>
 4. Run the simulator check (`tools/simulator/test-theme.sh`) and a device test before publishing.
 
 ## Requirements
-Python 3 with Pillow, numpy and fontTools, pinned with hashes in `requirements.txt` (`python3 -m pip install --require-hashes -r tools/themes/requirements.txt`; rebuilds not yet confirmed identical with those versions); Noto Sans CJK and Noto Serif CJK in `/usr/share/fonts/opentype/noto/`.
+Python 3 with Pillow, numpy and fontTools, pinned with hashes in `requirements.txt` (`python3 -m pip install --require-hashes -r tools/themes/requirements.txt`); Noto Sans CJK and Noto Serif CJK in `/usr/share/fonts/opentype/noto/`.
+
+The fonts must be these exact releases, or the rendered `.fnt` files differ from the shipped zips. Noto Serif CJK 2.003 changes 47 glyphs in the 40 px title fonts of In Love and Pretty Sad.
+
+| File in `/usr/share/fonts/opentype/noto/` | Version | Download |
+|---|---|---|
+| `NotoSansCJK-Medium.ttc` | 2.004 | https://raw.githubusercontent.com/notofonts/noto-cjk/Sans2.004/Sans/OTC/NotoSansCJK-Medium.ttc |
+| `NotoSansCJK-Bold.ttc` (Studio Console) | 2.004 | https://raw.githubusercontent.com/notofonts/noto-cjk/Sans2.004/Sans/OTC/NotoSansCJK-Bold.ttc |
+| `NotoSerifCJK-SemiBold.ttc` (In Love, Pretty Sad) | 2.002 | https://raw.githubusercontent.com/notofonts/noto-cjk/Serif2.002/Serif/OTC/NotoSerifCJK-SemiBold.ttc |
+
+Check a version with `fc-query -f '%{fontversion}\n' <file>`: 2.004 prints 131334 and 2.002 prints 131203.
