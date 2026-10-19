@@ -31,4 +31,4 @@ It rebuilds each theme into a scratch folder, unzips the zip from `themes/<slug>
 4. Run the simulator check (`tools/simulator/test-theme.sh`) and a device test before publishing.
 
 ## Requirements
-Python 3 with Pillow, numpy and fontTools; Noto Sans CJK and Noto Serif CJK in `/usr/share/fonts/opentype/noto/`.
+Python 3 with Pillow, numpy and fontTools, pinned with hashes in `requirements.txt` (`python3 -m pip install --require-hashes -r tools/themes/requirements.txt`; rebuilds not yet confirmed identical with those versions); Noto Sans CJK and Noto Serif CJK in `/usr/share/fonts/opentype/noto/`.
