@@ -10,7 +10,7 @@
 - A.C to decide: which project moves to a private repo (build tools or the studio app), and whether to scrub its history here.
 
 ## Recently done
-- 2026-10-19: A.C turned on Dependabot alerts, secret scanning with push protection, and CodeQL default setup.
+- 2026-10-19: A.C created the `security` and `sev-*` labels, and turned on Dependabot alerts, secret scanning with push protection, and CodeQL default setup.
 - 2026-10-19: Checks workflow added (Gitleaks, pip-audit); Issue digest actions pinned and its output marked untrusted; security labels and fix deadlines in CLAUDE.md; no scheduled issue check for this repo.
 - 2026-10-19: Recorded in CLAUDE.md: 2FA on (same accounts as batch), GitHub Pro, A.C named by initials.
 - 2026-10-19: Kickoff answers recorded in CLAUDE.md (privacy level 4, macOS, Sydney, digest bot exception, WCAG not applied to themes).
