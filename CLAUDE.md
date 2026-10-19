@@ -7,6 +7,7 @@
 - A.C's computer: macOS (write instructions for Terminal, `sed -i ''`, the Passwords app).
 - Time zone: Australia/Sydney, for dates and any scheduled checks.
 - Public contact: themes@oddlogic.space (as in the theme licence files).
+- Repo security settings (A.C, 19 Oct): dependency graph, Dependabot alerts, secret scanning with push protection, and CodeQL default setup (with Copilot Autofix) are on. Dependabot security updates and malware alerts are off.
 - Two-factor sign-in is on for GitHub (`oddlogic-space`), Cloudflare and Google (A.C, 19 Oct, the same accounts as oddlogic-space/batch). Both claude.ai accounts sign in with an emailed link to a Proton mailbox that has two-factor on.
 - CONTACT_TO and ALERT_TO: not needed; there is no website.
 - Tokens and access (names only, never values):
