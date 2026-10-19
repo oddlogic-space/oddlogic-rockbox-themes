@@ -1,12 +1,14 @@
 # Status
 
 ## In progress
-- Standards check #5 (https://github.com/oddlogic-space/oddlogic-rockbox-themes/issues/5): all five Review now items are done. A.C to close it, or pick from its Next and Later items (feedback form extras, accessibility already decided).
+- Nothing in progress.
 
 ## Outstanding
+- Optional follow-ups from #5: an urgent flag on the bug-report form; pin the SDL clone in `tools/simulator/build-simulator.sh` to a commit; a checksum for the DSEG download.
 - A.C to decide: which project moves to a private repo (build tools or the studio app), and whether to scrub its history here.
 
 ## Recently done
+- 2026-10-19: Standards check #5 closed as done. Next check: read the Project Standards change log from 19 Oct 2026.
 - 2026-10-19: A.C turned on stage 2 of the `main` ruleset (pull request required, `Secret scan and dependency audit` and `CodeQL` must pass). Issue digest workflow and `tracking/issues.md` removed (A.C).
 - 2026-10-19: A.C merged #10, turned on stage 1 of the `main` ruleset (no force pushes or deletions) and private vulnerability reporting, and limited the Cloudflare Workers and Pages app to selected repositories (not this one).
 - 2026-10-19: `tools/verify-rebuild.sh` PASSes for all five themes with the pinned packages (Pillow 12.3.0, numpy 2.5.4, fontTools 4.67.0) and the pinned Noto fonts. Pillow 13.0.0 fails the Studio Console font build, so Pillow stays on 12.3.0.
